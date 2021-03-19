@@ -1,4 +1,4 @@
-# zil_switcher
+# zil_switcher zil switcher
 The Python script that turns zil miner on and turns the main miner off when PoW (mining round) starts and vise versa.
 
 
