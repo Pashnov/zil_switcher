@@ -18,18 +18,16 @@ Inside zil_switcher folder run next command:
 `venv\Scripts\activate.bat`
 
 From here your environment is configured. 
-Open **start_switcher.bat** in any text editor and change next variables:
-`main_miner_filepath_to_bat` </br>
-`zil_miner_filepath_to_bat` </br>
-
-Write full path to your *.bat files.
+Open **start_switcher.bat** in any text editor and change next arguments
+for **-m** (it's filepath to main miner) and for **-z** (it's filepath to zilliqa miner).
+Write full path to your *.bat files. 
 Save file.
 
 Back to cmd (command prompt) and run the zil_switcher:
 
-`python zil_switcher.py`
+`start_switcher.bat`
 
-#ps
+# ps
 video instructions - https://youtu.be/uiq7VIG-l3g
 
 Ref link to ezil - https://ezil.me/?p=2969 (it will be huge thanks me)
