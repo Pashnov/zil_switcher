@@ -1,34 +1,12 @@
 # zil switcher zil_switcher zilliqa switcher
-The Python script that turns zil miner on and turns the main miner off when PoW (mining round) starts and vise versa.
-
+Application turns zil miner on and turns the main miner off 
+when PoW (mining round) starts and vise versa.
 
 # how to start
-1st way:
-You need to have python3 on your pc. Install pip.
-Using pip run next command to load necessary libraries for script
-
-`pip install requests` </br>
-`pip install psutil` </br>
-
-2nd way:
-You need to activate virtual environment (venv folder) that contains all dependencies.
-Open cmd (command prompt) and go to the folder **zil_switcher** using **cd** command.
-Inside zil_switcher folder run next command:
-
-`venv\Scripts\activate.bat`
-
-From here your environment is configured. 
-Open **start_switcher.bat** in any text editor and change next arguments
-for **-m** (it's filepath to main miner) and for **-z** (it's filepath to zilliqa miner).
-Write full path to your *.bat files. 
-Save file.
-
-Back to cmd (command prompt) and run the zil_switcher:
-
-`start_switcher.bat`
+Just edit the **start_switcher.bat:** and make double click to bat file.
 
 # ps
-video instructions - https://youtu.be/uiq7VIG-l3g
+video instructions - https://youtu.be/uiq7VIG-l3g (old variant how to start)
 
 Ref link to ezil - https://ezil.me/?p=2969 (it will be huge thanks me)
 
