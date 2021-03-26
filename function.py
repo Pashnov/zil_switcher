@@ -11,6 +11,8 @@ import argparse
 main_process = None
 zil_process = None
 
+startupinfo = None
+
 
 class PropertyBox:
 
@@ -35,11 +37,13 @@ def check_is_test_run(test_run):
 
 
 def parse_command_line_arguments(property_box: PropertyBox):
+    global startupinfo
     parser = argparse.ArgumentParser()
     parser.add_argument('-m', '-main', '--main', help='filepath to main miner bat file', required=True)
     parser.add_argument('-z', '-zil', '--zil', help='filepath to zil miner bat file', required=True)
     parser.add_argument('-t', '-test', '-test_run', '--test_run', help='test run for debugging issues where number '
                                                                        'block it typed from cmd', action='store_true')
+    parser.add_argument('-minimize', '--minimize', help='minimize command prompt windows', action='store_true')
     args = parser.parse_args()
 
     print(f'arguments: {args}')
@@ -57,6 +61,14 @@ def parse_command_line_arguments(property_box: PropertyBox):
         property_box.zil_miner_filepath_to_bat = args.zil
 
     property_box.test_run = args.test_run
+
+    if args.minimize:
+        print("the windows is going to be minimized")
+        SW_MINIMIZE = 6
+        startupinfo = subprocess.STARTUPINFO()
+        # startupinfo.dwFlags |= (subprocess.STARTF_USESTDHANDLES | subprocess.STARTF_USESHOWWINDOW)
+        startupinfo.dwFlags = subprocess.STARTF_USESHOWWINDOW
+        startupinfo.wShowWindow = SW_MINIMIZE
 
 
 def get_count(last_2_digits, property_box: PropertyBox):
@@ -100,7 +112,8 @@ def start_main_miner(property_box: PropertyBox):
     main_bat = property_box.main_miner_filepath_to_bat
 
     cwd = os.path.dirname(main_bat)
-    main_process = subprocess.Popen(main_bat, creationflags=subprocess.CREATE_NEW_CONSOLE, cwd=cwd)
+    main_process = subprocess.Popen(main_bat, creationflags=subprocess.CREATE_NEW_CONSOLE, cwd=cwd,
+                                    startupinfo=startupinfo)
 
     print(f"process: {main_process}")
     print(f"process.pid: {main_process.pid}")
@@ -116,7 +129,8 @@ def start_zil_miner(property_box: PropertyBox):
     zil_bat = property_box.zil_miner_filepath_to_bat
 
     cwd = os.path.dirname(zil_bat)
-    zil_process = subprocess.Popen(zil_bat, creationflags=subprocess.CREATE_NEW_CONSOLE, cwd=cwd)
+    zil_process = subprocess.Popen(zil_bat, creationflags=subprocess.CREATE_NEW_CONSOLE, cwd=cwd,
+                                   startupinfo=startupinfo)
 
     print(f"process: {zil_process}")
     print(f"process.pid: {zil_process.pid}")
