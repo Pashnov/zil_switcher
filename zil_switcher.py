@@ -12,7 +12,10 @@ is_main_miner = True
 
 property_box = PropertyBox()
 parse_command_line_arguments(property_box)
-print(f'Next arguments will be applied: {property_box}')
+print(f'Next arguments will be applied: '
+      f'\n=============================================='
+      f'\n{property_box}\n'
+      f'\n==============================================')
 check_is_test_run(property_box.test_run)
 
 start_main_miner(property_box)

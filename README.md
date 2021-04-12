@@ -5,6 +5,13 @@ when PoW (mining round) starts and vise versa.
 # how to start
 Just edit the **start_switcher.bat:** and make double click to bat file.
 
+# parameters
+**-m**, **-main**, **--main** - filepath to main miner </br>
+**-z**, **-zil**, **--zil** - filepath to zilliqa miner </br>
+**-t**, **--test_run** - test run, you can path block number in cmd </br>
+**-minimize**, **--minimize** - miner will be started minimized </br>
+**-delay**, **--delay** - delay before shut down main miner and start zilliqa miner </br>
+
 # ps
 video instructions - https://youtu.be/uiq7VIG-l3g (old variant how to start)
 

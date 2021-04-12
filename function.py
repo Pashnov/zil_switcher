@@ -20,11 +20,15 @@ class PropertyBox:
         self.main_miner_filepath_to_bat = None
         self.zil_miner_filepath_to_bat = None
         self.test_run = False
+        self.delay = 1
 
     def __str__(self):
-        return f'main_miner_filepath_to_bat: {self.main_miner_filepath_to_bat}, ' \
-               f'zil_miner_filepath_to_bat: {self.zil_miner_filepath_to_bat}, ' \
-               f'test_run: {self.test_run}'
+        return f'\n main_miner_filepath_to_bat: {self.main_miner_filepath_to_bat}, ' \
+               f'\n zil_miner_filepath_to_bat: {self.zil_miner_filepath_to_bat}, ' \
+               f'\n test_run: {self.test_run}, '\
+               f'\n delay: {self.delay}'
+
+
 
 
 def check_is_test_run(test_run):
@@ -44,6 +48,8 @@ def parse_command_line_arguments(property_box: PropertyBox):
     parser.add_argument('-t', '-test', '-test_run', '--test_run', help='test run for debugging issues where number '
                                                                        'block it typed from cmd', action='store_true')
     parser.add_argument('-minimize', '--minimize', help='minimize command prompt windows', action='store_true')
+    parser.add_argument('-delay', '--delay', help='delay before shutdown main miner and start zilliqa miner', default=1,
+                        type=int)
     args = parser.parse_args()
 
     print(f'arguments: {args}')
@@ -61,6 +67,7 @@ def parse_command_line_arguments(property_box: PropertyBox):
         property_box.zil_miner_filepath_to_bat = args.zil
 
     property_box.test_run = args.test_run
+    property_box.delay = args.delay
 
     if args.minimize:
         print("the windows is going to be minimized")
@@ -120,6 +127,7 @@ def start_main_miner(property_box: PropertyBox):
 
 
 def start_zil_miner(property_box: PropertyBox):
+    time.sleep(property_box.delay)
     global zil_process, main_process
     if main_process is not None:
         kill(main_process.pid)
