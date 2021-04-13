@@ -26,7 +26,7 @@ class PropertyBox:
         return f'\n main_miner_filepath_to_bat: {self.main_miner_filepath_to_bat}, ' \
                f'\n zil_miner_filepath_to_bat: {self.zil_miner_filepath_to_bat}, ' \
                f'\n test_run: {self.test_run}, '\
-               f'\n delay: {self.delay}'
+               f'\n delay: {self.delay} seconds'
 
 
 
@@ -91,9 +91,12 @@ def sleep(count):
     if 1 < count < 97:
         print('sleep for 60 seconds')
         time.sleep(60)
-    elif 97 <= count < 99:
+    elif 97 <= count < 98:
         print('sleep for 5 seconds')
         time.sleep(5)
+    elif 98 <= count < 99:
+        print('sleep for 1 seconds')
+        time.sleep(1)
     else:
         print('sleep for 10 seconds')
         time.sleep(10)
@@ -127,6 +130,7 @@ def start_main_miner(property_box: PropertyBox):
 
 
 def start_zil_miner(property_box: PropertyBox):
+    print(f'\nDelay for {property_box.delay} seconds, went sleep\n')
     time.sleep(property_box.delay)
     global zil_process, main_process
     if main_process is not None:
